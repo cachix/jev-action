@@ -1,0 +1,36 @@
+name: Run Jev
+description: Run typed Jev judgments on a GitHub event or a JSON request
+inputs:
+  api-key:
+    description: TypeSafe API key, usually from secrets.JEV_API_KEY
+    required: true
+  github-token:
+    description: GitHub token for fetching repository labels. Pass github.token when using repository labels.
+    required: false
+  questions:
+    description: JSON object of Jev questions. The GitHub event is used as state unless state-file is set.
+    required: false
+  labels:
+    description: '"repository" to fetch all repository labels, a JSON array of names to fetch selected labels, or a JSON name-to-description object.'
+    required: false
+  state-file:
+    description: Path to a JSON state file for questions or labels. Defaults to the GitHub event payload.
+    required: false
+  request-file:
+    description: Path to a complete Jev request JSON file, instead of labels, questions, and state-file.
+    required: false
+  assert:
+    description: Optional Jev assertion expression. A false assertion fails the step with exit code 3.
+    required: false
+  version:
+    description: Complete Jev release tag to install.
+    required: false
+    default: v2026.919.0
+outputs:
+  response:
+    description: The single-line JSON response from Jev, including answers and usage.
+  labels:
+    description: The JSON name-to-description object used for label choices, when labels input is set.
+runs:
+  using: node24
+  main: dist/main.js
