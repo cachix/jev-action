@@ -98,7 +98,7 @@ Jev calls the TypeSafe API with the request state. Review which event fields or 
 To control the entire request, commit a JSON file and pass it to `request-file`:
 
 ```yaml
-- uses: actions/checkout@v4
+- uses: actions/checkout@v7
 - id: judge
   uses: cachix/jev-action@v1
   with:
